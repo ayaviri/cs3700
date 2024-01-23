@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Go to root directory
+cd ../../
+
+# Execute client JAR with all 5 (possibly present) CL args
+java -cp ./target/cs3700-1.0-SNAPSHOT.jar ayaviri.project_one.EntryPoint $1 $2 $3 $4 $5
