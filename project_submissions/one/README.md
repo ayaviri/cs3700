@@ -1,5 +1,7 @@
 # Project 1: Wordle TCP Client
 
+Note to self: I never found the secret flag with the unencrypted connection. An implementation of a smarter guessing strategy will fix that.
+
 ## Architectural Overview (Static Interactions Between Components)
 
 ```
