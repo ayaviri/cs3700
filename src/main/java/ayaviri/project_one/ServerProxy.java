@@ -28,9 +28,7 @@ public class ServerProxy {
     // the request, receives and sets this proxy's game ID in response
     public void greetServer(String username) throws IOException {
         this.connection.write(this.constructGreeting(username));
-        System.out.println("Hello message written");
         Optional<JsonElement> response = this.connection.readElement();
-        System.out.println("Start message received");
     
         if (this.greetingResponseIsValid(response)) {
             this.gameId = this.getGameIdFrom(response.get());

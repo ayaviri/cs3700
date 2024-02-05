@@ -32,7 +32,6 @@ public class ServerConnection {
     // Writes the given JSON element to this connection's underlying
     // output stream. Flushes afterwards
     public void write(JsonElement message) throws IOException {
-        System.out.println(String.format("Writing to server: %s", message.toString()));
         this.writer.write(String.format("%s\n", message.toString()));
         this.writer.flush();
     }

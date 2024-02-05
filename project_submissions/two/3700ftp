@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Go to root directory
+cd ../../
+
+java -cp ./target/cs3700-1.0-SNAPSHOT.jar ayaviri.project_two.EntryPoint "$@"

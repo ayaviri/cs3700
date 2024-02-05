@@ -16,7 +16,7 @@ public class Player {
 
     public String guess(List<Guess> guessHistory) {
         String guess = this.removeRandom();
-        System.out.println(String.format("Guess: %s", guess));
+
         return guess;
     }
 

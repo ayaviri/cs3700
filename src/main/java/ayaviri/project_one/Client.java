@@ -31,10 +31,8 @@ public class Client {
         // TODO: The connection to server should not really happen during the 
         // construction of the client
         Socket socket = this.connectToServer(config);
-        System.out.println("Connected to server");
         this.serverProxy = new ServerProxy(socket);
         this.player = new Player(this.readInWordList());
-        System.out.println("Word list read in");
         this.username = config.username();
     }
 
@@ -43,10 +41,8 @@ public class Client {
     // the end of the game
     public GameResult playGame() throws IOException {
         this.serverProxy.greetServer(this.username);
-        System.out.println("Server greeted");
         GameResult result = this.serverProxy.playGameWith(this.player);
         this.serverProxy.bidFarewellToServer();
-        System.out.println("Server bid farewell to");
 
         return result;
     }
@@ -58,7 +54,6 @@ public class Client {
             config.hostname(),
             config.portNumber()
         );
-        System.out.println("Socket created");
 
         if (config.useEncryptedSocket()) {
             SSLSocketFactory socketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
