@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.net.URL;
 import java.net.MalformedURLException;
 
-public class RMDIROperation implements FTPOperation {
-    // Represents the path of the directory to be removed 
+public class RMOperation implements FTPOperation {
+    // Represents the path of the file to be deleted
     private final URL remotePath;
 
-    private RMDIROperation(Builder b) {
+    private RMOperation(Builder b) {
         this.remotePath = b.remotePath().get();
     }
 
@@ -19,7 +19,9 @@ public class RMDIROperation implements FTPOperation {
         steps.add(new ServerConnectionStep(proxy, this.remotePath));
         steps.add(new LoginStep(proxy, Optional.of(this.remotePath.getUserInfo())));
         steps.add(new ConnectionModeConfigurationStep(proxy));
-        steps.add(new RmdCommandStep(proxy, this.remotePath.getPath()));
+        steps.add(new DataChannelCreationStep(proxy));
+        steps.add(new DeleCommandStep(proxy, this.remotePath.getPath()));
+        steps.add(new DataChannelClosureStep(proxy));
         steps.add(new ServerDisconnectionStep(proxy));
 
         return steps;
@@ -31,10 +33,10 @@ public class RMDIROperation implements FTPOperation {
         public Builder() {
             this.remotePath = Optional.empty();
         }
-    
+
         public Builder addParameter(String parameter) {
             if (!this.remotePath.isEmpty()) {
-                throw new IllegalArgumentException("rmdir command given too many arguments");
+                throw new IllegalArgumentException("rm command given too many arguments");
             }
    
             try {
@@ -46,12 +48,12 @@ public class RMDIROperation implements FTPOperation {
     
         }
     
-        public RMDIROperation tryBuild() {
+        public RMOperation tryBuild() {
             if (this.remotePath.isEmpty()) {
-                throw new IllegalArgumentException("rmdir command constructed without any arguments");
+                throw new IllegalArgumentException("rm command constructed without any arguments");
             }
 
-            return new RMDIROperation(this);
+            return new RMOperation(this);
         }
 
         public Optional<URL> remotePath() {
@@ -59,4 +61,3 @@ public class RMDIROperation implements FTPOperation {
         }
     }
 }
-

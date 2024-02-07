@@ -1,11 +1,11 @@
 package ayaviri.project_two;
 
 // Sends the MKD command to the server with the given directory path
-public class MKDCommandStep implements Step {
+public class MkdCommandStep implements Step {
     private final ServerProxy serverProxy;
     private final String directoryPath;
 
-    public MKDCommandStep(ServerProxy proxy, String directoryPath) {
+    public MkdCommandStep(ServerProxy proxy, String directoryPath) {
         this.serverProxy = proxy;
         this.directoryPath = directoryPath;
     }

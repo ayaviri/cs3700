@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.net.URL;
 import java.net.MalformedURLException;
-import java.io.IOException;
 
 public class MKDIROperation implements FTPOperation {
     // Represents the path of the directory to be created
@@ -20,7 +19,7 @@ public class MKDIROperation implements FTPOperation {
         steps.add(new ServerConnectionStep(proxy, this.remotePath));
         steps.add(new LoginStep(proxy, Optional.of(this.remotePath.getUserInfo())));
         steps.add(new ConnectionModeConfigurationStep(proxy));
-        steps.add(new MKDCommandStep(proxy, this.remotePath.getPath()));
+        steps.add(new MkdCommandStep(proxy, this.remotePath.getPath()));
         steps.add(new ServerDisconnectionStep(proxy));
 
         return steps;

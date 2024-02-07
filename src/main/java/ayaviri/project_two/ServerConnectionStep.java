@@ -8,7 +8,6 @@ import java.net.URL;
 public class ServerConnectionStep implements Step {
     private final ServerProxy serverProxy;
     private final URL serverURL;
-    private final String expectedHelloMessage = "foobar";
     private final int undefinedPort = -1;
     private final int defaultPort = 21;
 
@@ -20,7 +19,7 @@ public class ServerConnectionStep implements Step {
     public void execute() throws IOException {
         ServerConnection c = this.establishControlChannel();
         this.serverProxy.addControlChannel(c);
-        this.serverProxy.expectResponse(this.expectedHelloMessage);
+        this.serverProxy.expectSuccessResponse();
     }
 
     private ServerConnection establishControlChannel() throws IOException {

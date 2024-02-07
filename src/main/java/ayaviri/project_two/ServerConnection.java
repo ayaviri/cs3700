@@ -9,8 +9,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Optional;
 
-// TODO: Determine the data representation this connection uses to encode from/
-// decode to
+// Represents a connection over TCP with a remote host. The incoming stream
+// of bytes is converted to a stream of characters, and the outgoing stream
+// out bytes is converted from a stream of characters.
 public class ServerConnection {
     private final Socket socket;
     private final Writer writer;
@@ -32,7 +33,7 @@ public class ServerConnection {
             this.writer.write(message, 0, message.length());
             this.writer.flush();
         } catch (IOException e) {
-            // I fucking checked exceptions
+            // I fucking hate checked exceptions
             throw new RuntimeException(e.getMessage());
         }
     }

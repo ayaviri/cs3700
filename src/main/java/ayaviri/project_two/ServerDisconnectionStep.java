@@ -14,6 +14,6 @@ public class ServerDisconnectionStep implements Step {
 
     public void execute() throws IOException {
         this.serverProxy.controlChannel().write(this.quitCommand);
-        this.serverProxy.controlChannel().close();
+        this.serverProxy.closeControlChannel();
     }
 }
